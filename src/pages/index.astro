@@ -1,0 +1,77 @@
+---
+import Alumno from "@/components/Alumno.astro";
+import Layout from "../layouts/Layout.astro";
+import Foto from "@assets/img/Seccion B/Sebastián Andrés Úbeda Rodríguez 32622162.jpeg"
+---
+
+<Layout>
+  <div class="min-h-screen bg-gradient-to-br from-blue-900 via-slate-800 to-blue-800 flex items-center justify-center p-4">
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-white/0 to-transparent"></div>
+    <div class="relative w-full max-w-md">
+      <div class="bg-white/95 backdrop-blur-lg shadow-2xl border-0 overflow-hidden rounded-lg">
+        <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-slate-600 text-white p-6 text-center relative">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative">
+            <h1 class="text-2xl font-bold mb-1">INVITACIÓN VERIFICADA</h1>
+          	<div class="flex justify-center mt-3">
+            	<p class="text-blue-100 text-sm">Fiesta de Graduación 2025 </p>
+              <svg
+                class="w-6 h-6 text-green-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 space-y-6">
+					<Alumno  />
+          
+          <div
+            class="bg-gradient-to-r from-blue-50 to-slate-50 border border-blue-200 rounded-lg p-4 text-center"
+          >
+            <div class="flex justify-center mb-2">
+              <svg
+                class="w-6 h-6 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-sm text-blue-800 font-medium">
+              ¡Felicitaciones por tu graduación!
+            </p>
+            <p class="text-xs text-blue-600 mt-1">
+              Este es un momento especial para celebrar tus logros académicos
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer con información adicional -->
+      <div class="text-center mt-4 text-white/70">
+        <p class="text-sm">Sistema de Verificación de Invitaciones</p>
+        <p class="text-xs mt-1">Fiesta de Graduación • 2025</p>
+      </div>
+    </div>
+  </div>
+</Layout>

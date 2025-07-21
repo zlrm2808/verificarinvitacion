@@ -1,0 +1,118 @@
+---
+import alumnos from "@/assets/alumnos.json";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return alumnos.map(alumno => ({
+    params: { cedula: alumno.cedula }
+  }));
+}
+
+const { cedula } = Astro.params;
+const alumno = alumnos.find(a => a.cedula === cedula);
+---
+
+<Layout>
+  <div class="min-h-screen bg-gradient-to-br from-blue-900 via-slate-800 to-blue-800 flex items-center justify-center p-4">
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-white/0 to-transparent"></div>
+    <div class="relative w-full max-w-md">
+      <div class="bg-white/95 backdrop-blur-lg shadow-2xl border-0 overflow-hidden rounded-lg">
+        <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-slate-600 text-white p-6 text-center relative">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative">
+            <h1 class="text-2xl font-bold mb-1">INVITACIÓN VERIFICADA</h1>
+            <div class="flex justify-center mt-3">
+              <p class="text-blue-100 text-sm">Fiesta de Graduación 2025 </p>
+              <svg class="w-6 h-6 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 space-y-6">
+          {alumno ? (
+            <div class="text-center">
+              <div class="relative inline-block">
+                <div class="relative size-72 mx-auto mb-4 -mt-4">
+                  <img src={alumno.foto} alt={alumno.nombre} class="w-full h-full object-cover rounded-full ring-4 ring-blue-200 shadow-2xl" />
+                </div>
+              </div>
+              <h2 class="text-md font-bold text-slate-800 mb-1 -mt-4">{alumno.nombre}</h2>
+              <div class="inline-flex items-center border border-blue-200 text-blue-700 bg-blue-50 px-2 py-1 rounded-full text-sm">
+                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                Alumno Verificado
+              </div>
+              <div class="space-y-4 -mt-10">
+                <div class="bg-slate-50 rounded-lg p-4 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center text-slate-600">
+                      <span class="text-sm font-medium">Cédula:</span>
+                    </div>
+                    <span class="font-medium text-slate-800 px-2 rounded text-sm">{alumno.cedula}</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center text-slate-600">
+                      <span class="text-sm font-medium">Sección:</span>
+                    </div>
+                    <span class="text-slate-800 font-semibold px-2">Sección {alumno.seccion}</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center text-slate-600">
+                      <span class="text-sm font-medium">Invitados:</span>
+                    </div>
+                    <div class="flex items-center">
+                      <span class="text-slate-800 font-semibold mr-2">{alumno.invitados} personas</span>
+                      <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Permitido</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-blue-50 rounded-lg">
+                  <img src="/assets/img/Graduacion.jpeg" alt="Celebración" />
+                </div>
+                <div
+            class="bg-gradient-to-r from-blue-50 to-slate-50 border border-blue-200 rounded-lg p-4 text-center"
+          >
+            <div class="flex justify-center mb-2">
+              <svg
+                class="w-6 h-6 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-sm text-blue-800 font-medium">
+              ¡Felicitaciones por tu graduación!
+            </p>
+            <p class="text-xs text-blue-600 mt-1">
+              Este es un momento especial para celebrar tus logros académicos
+            </p>
+          </div>
+              </div>
+            </div>
+          ) : (
+            <div class="text-center text-red-600 font-bold">Alumno no encontrado</div>
+          )}
+        </div>
+      </div>
+      <div class="text-center mt-4 text-white/70">
+        <p class="text-sm">Sistema de Verificación de Invitaciones</p>
+        <p class="text-xs mt-1">Fiesta de Graduación • 2025</p>
+      </div>
+    </div>
+  </div>
+</Layout>
